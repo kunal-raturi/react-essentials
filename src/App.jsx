@@ -3,9 +3,10 @@ import { Header } from "./components/Header.jsx";
 import { CoreConcept } from "./components/CoreConcept.jsx";
 import TabButton from "./components/TabButton.jsx";
 import { useState } from "react";
+import { EXAMPLES } from "./data.js";
 
 function App() {
-  const [selectedTopic, setSelectedTopic] = useState("please click a button ");
+  const [selectedTopic, setSelectedTopic] = useState("components");
   function handleSelect(selectedButton) {
     setSelectedTopic(selectedButton);
   }
@@ -27,14 +28,14 @@ function App() {
           <menu>
             <TabButton
               onSelect={() => {
-                handleSelect("component");
+                handleSelect("components");
               }}
             >
               Component
             </TabButton>
             <TabButton
               onSelect={() => {
-                handleSelect("JSX");
+                handleSelect("jsx");
               }}
             >
               JSX
@@ -54,7 +55,13 @@ function App() {
               State
             </TabButton>
           </menu>
-          {selectedTopic}
+          <div>
+            <h3>{EXAMPLES[selectedTopic].title}</h3>
+            <p>{EXAMPLES[selectedTopic].description}</p>
+            <pre>
+              <code>{EXAMPLES[selectedTopic].code}</code>
+            </pre>
+          </div>
         </section>
       </main>
     </div>
